@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyww.mapper.TestMapper">
+
+	<!-- 查找 -->
+	<select id="findTestByID" parameterType="int" resultType="TestModel">
+		select
+		* from t_test where test_id =#{test_id}
+	</select>
+
+	<!-- 插入 -->
+	<!-- useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到test的id属性 -->
+	<insert id="addTest" parameterType="TestModel" useGeneratedKeys="true"
+		keyProperty="test_id">
+		insert into t_test(
+		test_name,
+		test_age,
+		test_department,
+		test_worktype)
+		values(
+		#{test_name},
+		#{test_age},
+		#{test_department},
+		#{test_worktype})
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="deleteTest" parameterType="int">
+		delete from t_test where
+		test_id = #{test_id}
+	</delete>
+
+	<!-- 修改 -->
+	<update id="updatetest" parameterType="TestModel">
+		update t_test set
+		test_name = #{test_name},test_age=
+		#{test_age},test_department =
+		#{test_department}
+		,test_worktype=#{test_worktype} where test_id =
+		#{test_id}
+	</update>
+
+</mapper>  
